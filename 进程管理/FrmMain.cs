@@ -263,7 +263,7 @@ namespace 进程管理
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
-            this.Visible = false;
+            this.Visible = false; 
             this.ShowInTaskbar = false;
         }
 
