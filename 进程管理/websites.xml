@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Websites>
+	<Website>
+		<Name> </Name>
+		<Url> 此列双击时选择文件路径</Url>
+		<Browser>在此处进行添加信息保存</Browser>
+	</Website>
+	<Website>
+		<Name>百度</Name>
+		<Url>baidu.com</Url>
+		<Browser>IE</Browser>
+	</Website>
+	<Website>
+		<Name>谷歌</Name>
+		<Url>google.com</Url>
+		<Browser>GoogleChrome</Browser>
+	</Website>
+	<Website>
+		<Name>必应</Name>
+		<Url>bing.com</Url>
+		<Browser>Edge</Browser>
+	</Website>
+</Websites>
