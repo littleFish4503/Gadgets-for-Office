@@ -63,6 +63,26 @@ namespace 进程管理.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap _1e83a118bc6ea7b97242ee71ec57db24 {
+            get {
+                object obj = ResourceManager.GetObject("_1e83a118bc6ea7b97242ee71ec57db24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap ss {
+            get {
+                object obj = ResourceManager.GetObject("ss", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap 关闭 {
             get {
                 object obj = ResourceManager.GetObject("关闭", resourceCulture);
@@ -86,6 +106,16 @@ namespace 进程管理.Properties {
         internal static System.Drawing.Bitmap 窗口最小化 {
             get {
                 object obj = ResourceManager.GetObject("窗口最小化", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 菜单__1_ {
+            get {
+                object obj = ResourceManager.GetObject("菜单__1_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

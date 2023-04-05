@@ -91,9 +91,12 @@ namespace 进程管理
         DataTable tbProcess = new DataTable();
         private void ShowProcess_Click(object sender, EventArgs e)
         {
-
-            tbProcess.Columns.Add("Id", typeof(int));
-            tbProcess.Columns.Add("ProcessName", typeof(string));
+            tbProcess.Clear();
+            if (tbProcess.Columns.Count == 0)
+            {
+                tbProcess.Columns.Add("Id", typeof(int));
+                tbProcess.Columns.Add("ProcessName", typeof(string));
+            }
             foreach (Process p in Process.GetProcesses())
             {
                 DataRow dataRow = tbProcess.NewRow();

@@ -106,6 +106,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -226,9 +234,9 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_6DA77B1337374144A0C7C0E2CDED77E3"
             {
-            "DefaultLocation" = "8:[ProgramFiles64Folder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:D:\\App"
             "Name" = "8:#1925"
-            "AlwaysCreate" = "11:FALSE"
+            "AlwaysCreate" = "11:TRUE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Property" = "8:TARGETDIR"
@@ -264,20 +272,20 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Setup"
         "ProductCode" = "8:{127A27C9-FDC4-4658-94B7-026442FF5591}"
-        "PackageCode" = "8:{62C21684-6A56-49EC-B4BD-004A7ADA6BA5}"
+        "PackageCode" = "8:{ED2BE71C-E024-4C4A-9D6A-D05D83D7FD7C}"
         "UpgradeCode" = "8:{E7E9390F-CF8A-48CB-9D7F-6CF893E51179}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
-        "InstallAllUsers" = "11:FALSE"
+        "InstallAllUsers" = "11:TRUE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:2199131075@qq.com"
+        "Manufacturer" = "8:long"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/littleFish4503/Gadgets-for-Office"
         "Title" = "8:Setup"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:2199131075@qq.com"
+        "ARPCONTACT" = "8:long"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:https://github.com/littleFish4503/Gadgets-for-Office"

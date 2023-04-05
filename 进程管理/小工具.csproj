@@ -64,6 +64,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmBig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmBig.Designer.cs">
+      <DependentUpon>FrmBig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMiniFloat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMiniFloat.Designer.cs">
+      <DependentUpon>FrmMiniFloat.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,8 +85,14 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Website.cs" />
+    <EmbeddedResource Include="FrmBig.resx">
+      <DependentUpon>FrmBig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMiniFloat.resx">
+      <DependentUpon>FrmMiniFloat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -103,6 +121,10 @@
     <None Include="Resources\小助手-regular.ico" />
     <None Include="Resources\窗口最小化.png" />
     <None Include="Resources\关闭.png" />
+    <None Include="Resources\1e83a118bc6ea7b97242ee71ec57db24.jpeg" />
+    <None Include="Resources\菜单 %281%29.png" />
+    <None Include="Resources\ss.png" />
+    <None Include="Resources\ss.gif" />
     <Content Include="websites.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
