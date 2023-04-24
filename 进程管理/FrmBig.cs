@@ -29,7 +29,7 @@ namespace 进程管理
                 cp.ExStyle |= WS_EX_TOOLWINDOW;
                 return cp;
             }
-        } 
+        }
         #endregion
         public FrmBig()
         {
@@ -38,7 +38,7 @@ namespace 进程管理
         List<Website> websites;
         public void FrmBig_Load(object sender, EventArgs e)
         {
-            this.TopLevel = true;
+            this.TopMost = true;
             listBox1.Items.Clear();
             websites = WebsiteService.GetWebsites();
             foreach (Website website in websites)
@@ -50,35 +50,71 @@ namespace 进程管理
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Website website = websites[listBox1.SelectedIndex];
-            foreach (var x in websites)
+           
+        }
+
+        private void listBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            int index = listBox1.IndexFromPoint(e.Location);
+            if (index >= 0 && index < listBox1.Items.Count)
             {
-                if(x.Name==listBox1.SelectedItem.ToString()) { website = x; }
+                listBox1.SelectedIndex = index;
+                listBox1.SetSelected(index, true);
             }
+        }
 
-
-            // string url = websites[listBox1.SelectedIndex].Url;
-            string url = website.Url;
-          
-            //浏览器不为空
-            if (website.Browser != "")
+        private void listBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left)
             {
-                if (website.Browser == "IE")
+                Website website = websites[listBox1.SelectedIndex];
+                foreach (var x in websites)
                 {
-                    Process.Start("iexplore.exe", url);
+                    if (x.Name == listBox1.SelectedItem.ToString()) { website = x; }
                 }
-                else if (website.Browser == "Edge")
+
+
+                // string url = websites[listBox1.SelectedIndex].Url;
+                string url = website.Url;
+
+                //浏览器不为空
+                if (website.Browser != "")
                 {
+                    if (website.Browser == "IE")
+                    {
+                        Process.Start("iexplore.exe", url);
+                    }
+                    else if (website.Browser == "Edge")
+                    {
 
-                    Process.Start("microsoft-edge:" + url);
+                        Process.Start("microsoft-edge:" + url);
 
+                    }
+                    else { Process.Start("chrome.exe", url); }
                 }
-                else { Process.Start("chrome.exe", url); }
+                else
+                {
+                    try
+                    {
+                        if (url.Contains(".exe"))
+                        {
+                            Process.Start(url);
+                        }
+                        else
+                        {
+                            Process.Start("Explorer.exe", url);
+                        }
+
+                    }
+                    catch (Exception ex) { MessageBox.Show(ex.Message); }
+                }
             }
-            else
-            {
-                try { Process.Start(url); } catch (Exception ex) { MessageBox.Show(ex.Message); }
-            }
+        }
+
+        private void listBox1_MouseLeave(object sender, EventArgs e)
+        {
+            listBox1.SelectedItems.Clear();
+            
         }
     }
 }

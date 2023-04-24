@@ -157,7 +157,7 @@ namespace 进程管理
         private void FrmMain_Load(object sender, EventArgs e)
         {
             UpdateComBox();
-            btnWebsite_Click(sender, e);    
+            btnWebsite_Click(sender, e);
 
         }
         void UpdateComBox()
@@ -180,15 +180,15 @@ namespace 进程管理
             Dgv1.Columns["Name"].HeaderText = "名称";
             Dgv1.Columns["Browser"].HeaderText = "使用浏览器";
             Dgv1.AllowUserToAddRows = true;
-            Dgv1.EditMode= DataGridViewEditMode.EditOnEnter;
+            Dgv1.EditMode = DataGridViewEditMode.EditOnEnter;
             Dgv1.Font = new Font("宋体", 9);
-            Dgv1.Columns["Name"].DefaultCellStyle.Alignment=DataGridViewContentAlignment.MiddleCenter;
+            Dgv1.Columns["Name"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (Dgv1.Rows[0].Cells[2].Value.ToString()== "在此处进行添加信息保存") { Dgv1.Rows[0].Cells[2].Value = ""; }
-            Website website = new Website(); website.Name = Dgv1.CurrentRow.Cells["Name"].Value.ToString(); website.Url = Dgv1.CurrentRow.Cells["Url"].Value.ToString();website.Browser =Dgv1.CurrentRow.Cells["Browser"].Value.ToString();
+            if (Dgv1.Rows[0].Cells[2].Value.ToString() == "在此处进行添加信息保存") { Dgv1.Rows[0].Cells[2].Value = ""; }
+            Website website = new Website(); website.Name = Dgv1.CurrentRow.Cells["Name"].Value.ToString(); website.Url = Dgv1.CurrentRow.Cells["Url"].Value.ToString(); website.Browser = Dgv1.CurrentRow.Cells["Browser"].Value.ToString();
             bool b = WebsiteService.AddInfo(website);
             if (b)
             { MessageBox.Show("成功"); }
@@ -197,7 +197,7 @@ namespace 进程管理
 
         private void button1_Click(object sender, EventArgs e)
         {
-          if(MessageBox.Show("确认删除？", "警告", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("确认删除？", "警告", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 WebsiteService.DeleteInfo(Dgv1.CurrentRow.Cells["Name"].Value.ToString());
             }
@@ -216,15 +216,21 @@ namespace 进程管理
                 }
                 else if (Dgv1.CurrentRow.Cells["Browser"].Value.ToString() == "Edge")
                 {
-                   
-                    Process.Start("microsoft-edge:"+ url);
+
+                    Process.Start("microsoft-edge:+", url);
 
                 }
                 else { Process.Start("chrome.exe", url); }
             }
             else
             {
-                try { Process.Start(url); }catch(Exception ex) { MessageBox.Show(ex.Message); }
+                try
+                {
+                    if (url.Contains(".exe"))
+                    { Process.Start(url); }
+                    else { Process.Start("Explorer.exe",url); }
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
         }
         /// <summary>
@@ -234,8 +240,8 @@ namespace 进程管理
         /// <param name="e"></param>
         private void button3_Click(object sender, EventArgs e)
         {
-            Website service = new Website() { Name = this.Dgv1.CurrentRow.Cells["Name"].Value.ToString(),Url= this.Dgv1.CurrentRow.Cells["Url"].Value.ToString(),Browser= this.Dgv1.CurrentRow.Cells["Browser"].Value.ToString() };
-            WebsiteService.UpdateInfo(this.Dgv1.CurrentRow.Cells["Name"].Value.ToString(),service);
+            Website service = new Website() { Name = this.Dgv1.CurrentRow.Cells["Name"].Value.ToString(), Url = this.Dgv1.CurrentRow.Cells["Url"].Value.ToString(), Browser = this.Dgv1.CurrentRow.Cells["Browser"].Value.ToString() };
+            WebsiteService.UpdateInfo(this.Dgv1.CurrentRow.Cells["Name"].Value.ToString(), service);
             btnWebsite_Click(sender, e);
         }
 
@@ -247,12 +253,36 @@ namespace 进程管理
 
         private void Dgv1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if(e.ColumnIndex == 1)
+            if (e.ColumnIndex == 1)
             {
                 openFileDialog1.Filter = "应用程序|*.exe";
-                this.openFileDialog1.ShowDialog();
-                Dgv1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = openFileDialog1.FileName;
-               
+                DialogResult result = this.openFileDialog1.ShowDialog();
+                if (result == DialogResult.OK)
+                { Dgv1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = openFileDialog1.FileName; }
+                else { Dgv1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = ""; }
+                //OpenFileDialog openFileDialog = new OpenFileDialog();
+                //openFileDialog.Title = "选择文件";
+                //openFileDialog.Filter = "文本文件 (*.txt)|*.exe|所有文件 (*.*)|*.*";
+
+                //FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+                //folderBrowserDialog.Description = "选择文件夹";
+
+                //DialogResult result = folderBrowserDialog.ShowDialog();
+                //if (result == DialogResult.OK)
+                //{
+                //    string folderPath = folderBrowserDialog.SelectedPath;
+
+                //    result = openFileDialog.ShowDialog();
+                //    if (result == DialogResult.OK)
+                //    {
+                //        string filePath = openFileDialog.FileName;
+
+                //        // 处理选择的文件夹和文件
+                //        Console.WriteLine("选择的文件夹路径：{0}", folderPath);
+                //        Console.WriteLine("选择的文件路径：{0}", filePath);
+                //    }
+
+                //}
             }
         }
 
@@ -261,31 +291,31 @@ namespace 进程管理
             Application.Exit();
         }
 
-       
+
 
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
-            this.Visible = false; 
+            this.Visible = false;
             this.ShowInTaskbar = false;
         }
 
         private void notifyIcon1_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            DateTime dateTime =DateTime.Now;
-            toolStripStatusLabel2.Text = dateTime.ToString()+"      ";
+            DateTime dateTime = DateTime.Now;
+            toolStripStatusLabel2.Text = dateTime.ToString() + "      ";
         }
 
         private void label6_Click(object sender, EventArgs e)
         {
             this.ShowInTaskbar = true;
-            this.WindowState= FormWindowState.Minimized;
-           
+            this.WindowState = FormWindowState.Minimized;
+
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -331,13 +361,19 @@ namespace 进程管理
 
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 this.Visible = false;
                 this.Show();
                 this.ShowInTaskbar = false;
             }
-           
+
+        }
+
+        private void 设置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmSetting frmSetting = new FrmSetting();
+            frmSetting.ShowDialog();
         }
     }
 

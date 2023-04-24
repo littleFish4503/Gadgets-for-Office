@@ -14,10 +14,13 @@ namespace 进程管理
         /// 应用程序的主入口点。
         /// </summary>
         [STAThread]
-      
+
         static void Main()
         {
-           
+            if (ConfigHelper.ReadConfig("isShowMainInStart") == "true"|| ConfigHelper.ReadConfig("isShowMainInStart") == "True") { isShowMainInStart = true; }
+            else { isShowMainInStart = false; }
+
+
             // 获取当前进程的名称
             string procName = Process.GetCurrentProcess().ProcessName;
 
@@ -31,29 +34,16 @@ namespace 进程管理
                 frmMain.Show();
                 return;
             }
+
+          
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FrmMiniFloat());
 
 
-            //Process[] ps=Process.GetProcesses();
-            //// 创建 frmMiniFloat 对象
-            //FrmMiniFloat frmMiniFloat = new FrmMiniFloat();
-
-
-            //// 检查进程列表
-            //foreach (Process p in ps)
-            //{
-            //    if (p.ProcessName == "小助手")
-            //    {
-            //        frmMiniFloat.Show();
-
-            //    }
-            //}
-
-            //// 如果没有找到 "小助手" 进程，则运行 frmMiniFloat 窗体
-            //Application.Run(frmMiniFloat);
         }
-        
+
+        public static bool isShowMainInStart;
     }
 }

@@ -38,8 +38,11 @@ namespace 进程管理
         private void FrmMiniFloat_Load(object sender, EventArgs e)
         {
             //FrmBig frmBig=new FrmBig();
-            FrmMain frmMain = new FrmMain();
-            frmMain.Show();
+
+            if (Program.isShowMainInStart) { frmMain.Show(); }
+            else { frmMain.Hide(); }
+
+            //  frmMain.Show();
             this.Width = 50; this.Height = 50;
             this.TopMost = true;
             this.Location = new Point(
@@ -50,7 +53,7 @@ namespace 进程管理
         private bool mouseDown;
         private Point lastLocation;
         FrmBig frmBig = new FrmBig();
-
+        FrmMain frmMain = new FrmMain();
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;
@@ -84,20 +87,20 @@ namespace 进程管理
 
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
-           //  bigLocation = this.Location;
-           // if (this.Location.X > Screen.PrimaryScreen.WorkingArea.Width - this.Width - frmBig.Width) { bigLocation.X = this.Location.X - frmBig.Width; }
-           // else { bigLocation.X = this.Location.X + this.Width; }
-           // if (this.Location.Y > Screen.PrimaryScreen.WorkingArea.Height - this.Height - frmBig.Height) { bigLocation.Y = this.Location.Y - frmBig.Height; }
-           // else { bigLocation.Y = this.Location.Y; }
-           // frmBig.Location = bigLocation;
-           // if (frmBig == null)
-           // {
-           //     frmBig = new FrmBig();
-           // }
-           //else frmBig.Show();
+            //  bigLocation = this.Location;
+            // if (this.Location.X > Screen.PrimaryScreen.WorkingArea.Width - this.Width - frmBig.Width) { bigLocation.X = this.Location.X - frmBig.Width; }
+            // else { bigLocation.X = this.Location.X + this.Width; }
+            // if (this.Location.Y > Screen.PrimaryScreen.WorkingArea.Height - this.Height - frmBig.Height) { bigLocation.Y = this.Location.Y - frmBig.Height; }
+            // else { bigLocation.Y = this.Location.Y; }
+            // frmBig.Location = bigLocation;
+            // if (frmBig == null)
+            // {
+            //     frmBig = new FrmBig();
+            // }
+            //else frmBig.Show();
 
 
-            
+
 
         }
 
@@ -143,21 +146,14 @@ namespace 进程管理
         Point bigLocation;
         private void pictureBox1_MouseEnter(object sender, EventArgs e)
         {
-             bigLocation = this.Location;
+            bigLocation = this.Location;
             if (this.Location.X > Screen.PrimaryScreen.WorkingArea.Width - this.Width - frmBig.Width) { bigLocation.X = this.Location.X - frmBig.Width; }
             else { bigLocation.X = this.Location.X + this.Width; }
             if (this.Location.Y > Screen.PrimaryScreen.WorkingArea.Height - this.Height - frmBig.Height) { bigLocation.Y = this.Location.Y - frmBig.Height; }
             else { bigLocation.Y = this.Location.Y; }
             frmBig.Location = bigLocation;
-            if (frmBig == null)
-            {
-                frmBig = new FrmBig();
-                frmBig.Location = bigLocation;
-            }
-            else
-            {
-                frmBig.FrmBig_Load(null, null);
-            }
+            frmBig.FrmBig_Load(null, null);
+
             frmBig.Show();
         }
 
@@ -165,9 +161,9 @@ namespace 进程管理
         {
             Point point = this.Location;
             if (this.Location.X > Screen.PrimaryScreen.WorkingArea.Width - this.Width - contextMenuStrip1.Width) { point.X = this.Location.X - contextMenuStrip1.Width; }
-            else { point.X = this.Location.X -contextMenuStrip1.Width; }
+            else { point.X = this.Location.X - contextMenuStrip1.Width; }
             if (this.Location.Y > Screen.PrimaryScreen.WorkingArea.Height - this.Height - frmBig.Height) { point.Y = this.Location.Y - contextMenuStrip1.Height; }
-            else { point.Y = this.Location.Y-contextMenuStrip1.Height; }
+            else { point.Y = this.Location.Y - contextMenuStrip1.Height; }
             if (e.Button == MouseButtons.Right)
             {
                 this.contextMenuStrip1.Show(point);
@@ -184,11 +180,10 @@ namespace 进程管理
             Application.Exit();
         }
 
-        
+
 
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
         {
-            FrmMain frmMain = new FrmMain();
             frmMain.Show();
         }
     }
