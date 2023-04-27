@@ -103,7 +103,9 @@
             this.Name = "FrmMiniFloat";
             this.ShowInTaskbar = false;
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMiniFloat_FormClosing);
             this.Load += new System.EventHandler(this.FrmMiniFloat_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmMiniFloat_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);

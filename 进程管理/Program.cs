@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -45,5 +46,7 @@ namespace 进程管理
         }
 
         public static bool isShowMainInStart;
+        public static Color backgroundColor;
+        public static float fontSize;
     }
 }

@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+
 
 namespace 进程管理
 {
@@ -48,7 +51,19 @@ namespace 进程管理
             this.Location = new Point(
                 Screen.PrimaryScreen.WorkingArea.Width - this.Width - 20,
                 (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2);
+
+
+            KeyboardHook.Start();
         }
+        private void KeyKeyboardHook_KeyPressed(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.F)
+            {
+                this.pictureBox1_MouseEnter(sender, e);
+            }
+        }
+
+
         #region 拖动小球
         private bool mouseDown;
         private Point lastLocation;
@@ -186,5 +201,21 @@ namespace 进程管理
         {
             frmMain.Show();
         }
+
+        private void FrmMiniFloat_KeyDown(object sender, KeyEventArgs e)
+        {
+            //if (e.Control && e.KeyCode == Keys.F)
+            //{
+            //    // 处理 Ctrl + F 快捷键的按下事件
+            //    // 可以在这里添加您需要执行的代码
+            //    this.pictureBox1_MouseEnter(sender, e);
+            //}
+        }
+
+        private void FrmMiniFloat_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            KeyboardHook.Stop();
+        }
     }
+    
 }

@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using 进程管理.Properties;
@@ -371,6 +372,11 @@ namespace 进程管理
         }
 
         private void 设置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Thread thread = new Thread(new ThreadStart(OpenFrmSetting));
+            thread.Start();
+        }
+        private void OpenFrmSetting()
         {
             FrmSetting frmSetting = new FrmSetting();
             frmSetting.ShowDialog();
